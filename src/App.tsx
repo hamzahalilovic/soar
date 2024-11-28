@@ -1,11 +1,14 @@
 import React from "react";
+import { BrowserRouter as Router } from "react-router-dom";
+import AppRoutes from "./navigation/AppRoutes";
+import GlobalStyle from "./styles/GlobalStyle";
 
 const App: React.FC = () => {
   return (
-    <div>
-      <h1>Financial Dashboard</h1>
-      <p>Project setup is complete!</p>
-    </div>
+    <Router>
+      <GlobalStyle />
+      <AppRoutes />
+    </Router>
   );
 };
 
