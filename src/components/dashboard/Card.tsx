@@ -23,7 +23,8 @@ const CardWrapper = styled.div<{ themeVariant: "dark" | "light" }>`
       ? "linear-gradient(180deg, #5B5A6F 0%, #000000 100%)"
       : "linear-gradient(180deg, #FFFFFF 15%, #FFFFFF 0%)"};
   color: ${(props) => (props.themeVariant === "dark" ? "#FFFFFF" : "#343C6A")};
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: ${(props) =>
+    props.themeVariant === "dark" ? null : "1px solid #DFEAF2"};
 `;
 
 const CardTop = styled.div`
@@ -44,6 +45,8 @@ const CardBottom = styled.div<{ themeVariant: "dark" | "light" }>`
   align-items: center;
   justify-content: space-between;
   padding: 0px 24px;
+  border-top: ${(props) =>
+    props.themeVariant === "dark" ? null : "1px solid #DFEAF2"};
 `;
 
 const BalanceText = styled.p<{ themeVariant: "dark" | "light" }>`
@@ -92,7 +95,7 @@ const TopIconContainer = styled.div`
 
 const BottomIconContainer = styled.div`
   position: absolute;
-  right: 24.23;
+  right: 24.23px;
 `;
 
 const Card: React.FC<CardProps> = ({

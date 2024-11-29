@@ -14,6 +14,9 @@ import { ReactComponent as SearchIcon } from "../../assets/icons/search.svg";
 import { ReactComponent as NotificationIcon } from "../../assets/icons/notification.svg";
 import { ReactComponent as CardChipIcon } from "../../assets/icons/card-chip.svg";
 import { ReactComponent as MastercardIcon } from "../../assets/icons/mastercard.svg";
+import { ReactComponent as CardDepositIcon } from "../../assets/icons/card-deposit.svg";
+import { ReactComponent as PaypalIcon } from "../../assets/icons/paypal.svg";
+import { ReactComponent as TransferIcon } from "../../assets/icons/transfer.svg";
 
 const iconRegistry = {
   dashboard: DashboardIcon,
@@ -31,6 +34,9 @@ const iconRegistry = {
   notification: NotificationIcon,
   cardChip: CardChipIcon,
   mastercard: MastercardIcon,
+  cardDeposit: CardDepositIcon,
+  paypal: PaypalIcon,
+  transfer: TransferIcon,
 };
 
 export type IconName = keyof typeof iconRegistry;

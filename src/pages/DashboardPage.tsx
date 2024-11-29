@@ -2,7 +2,9 @@ import React from "react";
 import styled from "styled-components";
 
 import Card from "../components/dashboard/Card";
-import TransactionList from "../components/dashboard/TransactionList";
+import TransactionList, {
+  Transaction,
+} from "../components/dashboard/TransactionList";
 import WeeklyChart from "../components/dashboard/WeeklyChart";
 import ExpensesChart from "../components/dashboard/ExpensesChart";
 import QuickTransfer from "../components/dashboard/QuickTransfer";
@@ -52,27 +54,50 @@ const DashboardPage: React.FC = () => {
     { name: "Travel Card", balance: "3120", number: "3778222312342555" },
   ];
 
-  const transactions = [
+  const transactions: Transaction[] = [
     {
-      icon: "",
+      icon: "cardDeposit",
       description: "Deposit from my Card",
+      type: "deposit-card",
       date: "28 Jan 2021",
       amount: "-850",
     },
     {
-      icon: "",
+      icon: "paypal",
       description: "Deposit Paypal",
+      type: "deposit-paypal",
       date: "25 Jan 2021",
       amount: "+2500",
     },
     {
-      icon: "",
+      icon: "transfer",
       description: "Jemi Wilson",
+      type: "transfer",
+      date: "21 Jan 2021",
+      amount: "+5400",
+    },
+    {
+      icon: "cardDeposit",
+      description: "Deposit from my Card",
+      type: "deposit-card",
+      date: "28 Jan 2021",
+      amount: "-850",
+    },
+    {
+      icon: "paypal",
+      description: "Deposit Paypal",
+      type: "deposit-paypal",
+      date: "25 Jan 2021",
+      amount: "+2500",
+    },
+    {
+      icon: "transfer",
+      description: "Jemi Wilson",
+      type: "transfer",
       date: "21 Jan 2021",
       amount: "+5400",
     },
   ];
-
   return (
     <DashboardWrapper>
       <SectionWrapper style={{ gridColumn: "1 / 2" }}>
@@ -91,9 +116,7 @@ const DashboardPage: React.FC = () => {
 
       <SectionWrapper style={{ gridColumn: "2 / 3" }}>
         <Title>Recent Transactions</Title>
-        <Section>
-          <TransactionList transactions={transactions} />
-        </Section>
+        <TransactionList transactions={transactions} />
       </SectionWrapper>
 
       <SectionWrapper style={{ gridColumn: "1 / 2" }}>
