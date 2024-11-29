@@ -18,7 +18,7 @@ const ContentWrapper = styled.div`
 
 const MainContent = styled.main`
   flex: 1;
-  padding: 20px;
+
   background-color: #f9f9f9;
   overflow-y: auto;
 `;
