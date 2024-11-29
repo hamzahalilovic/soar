@@ -1,46 +1,38 @@
 import React from "react";
-import { Outlet } from "react-router-dom";
 import styled from "styled-components";
+import Sidebar from "../components/layout/Sidebar";
+import Navbar from "../components/layout/Navbar";
+import { Outlet } from "react-router-dom";
 
 const LayoutWrapper = styled.div`
   display: flex;
   height: 100vh;
 `;
 
-const Sidebar = styled.aside`
-  width: 250px;
-  background-color: #f8f9fa;
-  padding: 20px;
+const ContentWrapper = styled.div`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 `;
 
 const MainContent = styled.main`
   flex: 1;
   padding: 20px;
-  background-color: #ffffff;
-`;
-
-const Header = styled.header`
-  height: 60px;
-  background-color: #007bff;
-  color: white;
-  display: flex;
-  align-items: center;
-  padding: 0 20px;
-  font-size: 18px;
+  background-color: #f9f9f9;
+  overflow-y: auto;
 `;
 
 const MainLayout: React.FC = () => {
   return (
     <LayoutWrapper>
-      <Sidebar>
-        <p>Sidebar</p>
-      </Sidebar>
-      <div style={{ flex: 1 }}>
-        <Header>Dashboard</Header>
+      <Sidebar />
+      <ContentWrapper>
+        <Navbar />
         <MainContent>
           <Outlet />
         </MainContent>
-      </div>
+      </ContentWrapper>
     </LayoutWrapper>
   );
 };
