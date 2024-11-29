@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+
 import Card from "../components/dashboard/Card";
 import TransactionList from "../components/dashboard/TransactionList";
 import WeeklyChart from "../components/dashboard/WeeklyChart";
@@ -8,11 +9,24 @@ import QuickTransfer from "../components/dashboard/QuickTransfer";
 import BalanceHistoryChart from "../components/dashboard/BalanceHistoryChart";
 
 const DashboardWrapper = styled.div`
-  padding: 20px;
+  padding: 24px 40px;
   display: grid;
-  grid-template-rows: auto auto auto;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
+  grid-template-rows: 235px 322px 276px;
+  grid-template-columns: 2fr 1fr;
+  row-gap: 24px;
+  column-gap: 30px;
+`;
+
+const SectionWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const Title = styled.h2`
+  margin-bottom: 20px;
+  font-size: 22px;
+  font-weight: 600;
+  color: #343c6a;
 `;
 
 const Section = styled.div`
@@ -20,6 +34,17 @@ const Section = styled.div`
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+`;
+
+const CustomRow = styled.div`
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: 20px;
 `;
 
 const DashboardPage: React.FC = () => {
@@ -51,42 +76,53 @@ const DashboardPage: React.FC = () => {
 
   return (
     <DashboardWrapper>
-      {/* Row 1 */}
-      <Section>
-        <h2>My Cards</h2>
-        <div style={{ display: "flex", gap: "20px" }}>
-          {cards.map((card, index) => (
-            <Card key={index} {...card} />
-          ))}
-        </div>
-      </Section>
+      <SectionWrapper style={{ gridColumn: "1 / 2" }}>
+        <Title>My Cards</Title>
+        <Section>
+          <div style={{ display: "flex", gap: "20px" }}>
+            {cards.map((card, index) => (
+              <Card key={index} {...card} />
+            ))}
+          </div>
+        </Section>
+      </SectionWrapper>
 
-      <Section>
-        <h2>Recent Transactions</h2>
-        <TransactionList transactions={transactions} />
-      </Section>
+      <SectionWrapper style={{ gridColumn: "2 / 3" }}>
+        <Title>Recent Transactions</Title>
+        <Section>
+          <TransactionList transactions={transactions} />
+        </Section>
+      </SectionWrapper>
 
-      {/* Row 2 */}
-      <Section>
-        <h2>Weekly Activity</h2>
-        <WeeklyChart />
-      </Section>
+      <SectionWrapper style={{ gridColumn: "1 / 2" }}>
+        <Title>Weekly Activity</Title>
+        <Section>
+          <WeeklyChart />
+        </Section>
+      </SectionWrapper>
 
-      <Section>
-        <h2>Expense Statistics</h2>
-        <ExpensesChart />
-      </Section>
+      <SectionWrapper style={{ gridColumn: "2 / 3" }}>
+        <Title>Expense Statistics</Title>
+        <Section>
+          <ExpensesChart />
+        </Section>
+      </SectionWrapper>
 
-      {/* Row 3 */}
-      <Section>
-        <h2>Quick Transfer</h2>
-        <QuickTransfer />
-      </Section>
+      <CustomRow style={{ gridColumn: "1 / 3" }}>
+        <SectionWrapper>
+          <Title>Quick Transfer</Title>
+          <Section>
+            <QuickTransfer />
+          </Section>
+        </SectionWrapper>
 
-      <Section>
-        <h2>Balance History</h2>
-        <BalanceHistoryChart />
-      </Section>
+        <SectionWrapper>
+          <Title>Balance History</Title>
+          <Section>
+            <BalanceHistoryChart />
+          </Section>
+        </SectionWrapper>
+      </CustomRow>
     </DashboardWrapper>
   );
 };

@@ -10,16 +10,16 @@ const SidebarWrapper = styled.div`
   background-color: #fff;
   display: flex;
   flex-direction: column;
-  align-items: center; /* Centers all content horizontally */
-  padding: 31px 0px; /* Remove padding-left */
+  align-items: center;
+  padding: 31px 0px;
   border-right: 1px solid #e6eff5;
-  position: relative; /* Needed for absolute positioning of the indicator */
+  position: relative;
 `;
 
 const Logo = styled(Link)`
   display: flex;
   align-items: center;
-  justify-content: center; /* Center the logo and text */
+  justify-content: center;
   font-size: 18px;
   font-weight: bold;
   margin-bottom: 64px;
@@ -32,7 +32,7 @@ const Logo = styled(Link)`
 `;
 
 const NavList = styled.ul`
-  width: 100%; /* Take full width of the sidebar */
+  width: 100%;
   list-style: none;
   padding: 0;
   margin: 0;
@@ -42,7 +42,7 @@ const NavItemWrapper = styled.div`
   display: flex;
   align-items: center;
   position: relative;
-  width: 100%; /* Ensure full width for indicator alignment */
+  width: 100%;
 `;
 
 const StyledNavItem = styled(Link)<{ isActive: boolean; disabled: boolean }>`
@@ -71,7 +71,7 @@ const StyledNavItem = styled(Link)<{ isActive: boolean; disabled: boolean }>`
 
 const Indicator = styled.div<{ isActive: boolean }>`
   position: absolute;
-  left: 0; /* Align it to the absolute left */
+  left: 0;
   top: 50%;
   transform: translateY(-50%);
   width: 6px;
@@ -119,10 +119,10 @@ const Sidebar: React.FC = () => {
             <NavItemWrapper key={item.path}>
               <Indicator isActive={isActive} />
               <StyledNavItem
-                to={isDisabled ? "#" : item.path} 
+                to={isDisabled ? "#" : item.path}
                 isActive={isActive}
                 disabled={isDisabled}
-                onClick={(e) => isDisabled && e.preventDefault()} 
+                onClick={(e) => isDisabled && e.preventDefault()}
               >
                 <Icon
                   name={item.icon}
