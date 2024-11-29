@@ -11,7 +11,6 @@ import BalanceHistoryChart from "../components/dashboard/BalanceHistoryChart";
 const DashboardWrapper = styled.div`
   padding: 24px 40px;
   display: grid;
-  grid-template-rows: 235px 322px 276px;
   grid-template-columns: 2fr 1fr;
   row-gap: 24px;
   column-gap: 30px;
@@ -49,8 +48,8 @@ const CustomRow = styled.div`
 
 const DashboardPage: React.FC = () => {
   const cards = [
-    { name: "Savings Card", balance: "5756", number: "xx" },
-    { name: "Travel Card", balance: "3120", number: "xx" },
+    { name: "Savings Card", balance: "5756", number: "3778222312341234" },
+    { name: "Travel Card", balance: "3120", number: "3778222312342555" },
   ];
 
   const transactions = [
@@ -78,13 +77,16 @@ const DashboardPage: React.FC = () => {
     <DashboardWrapper>
       <SectionWrapper style={{ gridColumn: "1 / 2" }}>
         <Title>My Cards</Title>
-        <Section>
-          <div style={{ display: "flex", gap: "20px" }}>
-            {cards.map((card, index) => (
-              <Card key={index} {...card} />
-            ))}
-          </div>
-        </Section>
+
+        <div style={{ display: "flex", gap: "20px" }}>
+          {cards.map((card, index) => (
+            <Card
+              key={index}
+              {...card}
+              themeVariant={index % 2 === 0 ? "dark" : "light"}
+            />
+          ))}
+        </div>
       </SectionWrapper>
 
       <SectionWrapper style={{ gridColumn: "2 / 3" }}>
