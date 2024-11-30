@@ -30,18 +30,6 @@ const Title = styled.h2`
   color: #343c6a;
 `;
 
-const Section = styled.div`
-  background-color: #ffffff;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-`;
-
 const CustomRow = styled.div`
   display: grid;
   grid-template-columns: 3fr 2fr;
@@ -121,31 +109,27 @@ const DashboardPage: React.FC = () => {
 
       <SectionWrapper style={{ gridColumn: "1 / 2" }}>
         <Title>Weekly Activity</Title>
-        <Section>
-          <WeeklyChart />
-        </Section>
+
+        <WeeklyChart />
       </SectionWrapper>
 
       <SectionWrapper style={{ gridColumn: "2 / 3" }}>
         <Title>Expense Statistics</Title>
-        <Section>
-          <ExpensesChart />
-        </Section>
+
+        <ExpensesChart />
       </SectionWrapper>
 
       <CustomRow style={{ gridColumn: "1 / 3" }}>
         <SectionWrapper>
           <Title>Quick Transfer</Title>
-          <Section>
-            <QuickTransfer />
-          </Section>
+
+          <QuickTransfer />
         </SectionWrapper>
 
         <SectionWrapper>
           <Title>Balance History</Title>
-          <Section>
-            <BalanceHistoryChart />
-          </Section>
+
+          <BalanceHistoryChart />
         </SectionWrapper>
       </CustomRow>
     </DashboardWrapper>

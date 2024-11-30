@@ -1,10 +1,16 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 
-const TransferWrapper = styled.div`
-  margin-top: 20px;
-`;
+const Wrapper = styled.div`
+  height: 276px;
+  display: flex;
+  padding: 25px 20px;
 
+  justify-content: center;
+  align-items: center;
+  border-radius: 25px;
+  background-color: white;
+`;
 const ContactList = styled.div`
   display: flex;
   gap: 10px;
@@ -49,7 +55,7 @@ const QuickTransfer: React.FC = () => {
   };
 
   return (
-    <TransferWrapper>
+    <Wrapper>
       <h3>Quick Transfer</h3>
       <ContactList>
         {contacts.map((contact, index) => (
@@ -69,7 +75,7 @@ const QuickTransfer: React.FC = () => {
         />
         <Button onClick={handleSend}>Send</Button>
       </div>
-    </TransferWrapper>
+    </Wrapper>
   );
 };
 
