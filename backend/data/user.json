@@ -1,0 +1,12 @@
+{
+  "name": "Charlene Reed",
+  "email": "charlenereed@gmail.com",
+  "dob": "1990-01-25",
+  "address": {
+    "present": "San Jose, California, USA",
+    "permanent": "San Jose, California, USA"
+  },
+  "city": "San Jose",
+  "country": "USA",
+  "postalCode": "45962"
+}
