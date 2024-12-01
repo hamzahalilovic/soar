@@ -1,0 +1,32 @@
+[
+  {
+    "id": "1",
+    "name": "Livia Bator",
+    "role": "CEO",
+    "avatar": "https://mighty.tools/mockmind-api/content/human/44.jpg"
+  },
+  {
+    "id": "2",
+    "name": "Randy Press",
+    "role": "Director",
+    "avatar": "https://mighty.tools/mockmind-api/content/human/65.jpg"
+  },
+  {
+    "id": "3",
+    "name": "Workman",
+    "role": "Designer",
+    "avatar": "https://mighty.tools/mockmind-api/content/human/57.jpg"
+  },
+  {
+    "id": "4",
+    "name": "Workman",
+    "role": "Designer",
+    "avatar": "https://mighty.tools/mockmind-api/content/human/8.jpg"
+  },
+  {
+    "id": "5",
+    "name": "Workman",
+    "role": "Designer",
+    "avatar": "https://mighty.tools/mockmind-api/content/human/42.jpg"
+  }
+]

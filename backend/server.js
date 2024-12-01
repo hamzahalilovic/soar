@@ -8,6 +8,7 @@ app.use(express.json());
 const cards = require("./data/cards.json");
 const transactions = require("./data/transactions.json");
 const charts = require("./data/charts.json");
+const contacts = require("./data/contacts.json");
 
 app.get("/cards", (req, res) => {
   res.json(cards);
@@ -19,6 +20,10 @@ app.get("/transactions", (req, res) => {
 
 app.get("/charts", (req, res) => {
   res.json(charts);
+});
+
+app.get("/contacts", (req, res) => {
+  res.json(contacts);
 });
 
 const PORT = 5001;
