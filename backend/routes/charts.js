@@ -10,4 +10,8 @@ router.get("/balance-history", (req, res) => {
   res.json(chartData.balanceHistory);
 });
 
+router.get("/expense-statistics", (req, res) => {
+  res.json(chartData.expenseStatistics);
+});
+
 module.exports = router;
