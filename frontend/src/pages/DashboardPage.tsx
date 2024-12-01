@@ -1,14 +1,17 @@
 import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 
+import { fetchCards } from "../redux/slices/cardsSlice";
+import { fetchTransactions } from "../redux/slices/transactionsSlice";
+import { fetchCharts } from "../redux/slices/chartsSlice";
 import Card from "../components/dashboard/Card";
-import TransactionList, {
-  Transaction,
-} from "../components/dashboard/TransactionList";
+import TransactionList from "../components/dashboard/TransactionList";
 import WeeklyChart from "../components/dashboard/WeeklyChart";
 import ExpensesChart from "../components/dashboard/ExpensesChart";
-import QuickTransfer from "../components/dashboard/QuickTransfer";
 import BalanceHistoryChart from "../components/dashboard/BalanceHistoryChart";
+
+import { AppDispatch, RootState } from "../redux/store";
 
 const DashboardWrapper = styled.div`
   padding: 24px 40px;
@@ -37,100 +40,61 @@ const CustomRow = styled.div`
 `;
 
 const DashboardPage: React.FC = () => {
-  const cards = [
-    { name: "Savings Card", balance: "5756", number: "3778222312341234" },
-    { name: "Travel Card", balance: "3120", number: "3778222312342555" },
-  ];
+  const dispatch = useDispatch<AppDispatch>();
 
-  const transactions: Transaction[] = [
-    {
-      icon: "cardDeposit",
-      description: "Deposit from my Card",
-      type: "deposit-card",
-      date: "28 Jan 2021",
-      amount: "-850",
-    },
-    {
-      icon: "paypal",
-      description: "Deposit Paypal",
-      type: "deposit-paypal",
-      date: "25 Jan 2021",
-      amount: "+2500",
-    },
-    {
-      icon: "transfer",
-      description: "Jemi Wilson",
-      type: "transfer",
-      date: "21 Jan 2021",
-      amount: "+5400",
-    },
-    {
-      icon: "cardDeposit",
-      description: "Deposit from my Card",
-      type: "deposit-card",
-      date: "28 Jan 2021",
-      amount: "-850",
-    },
-    {
-      icon: "paypal",
-      description: "Deposit Paypal",
-      type: "deposit-paypal",
-      date: "25 Jan 2021",
-      amount: "+2500",
-    },
-    {
-      icon: "transfer",
-      description: "Jemi Wilson",
-      type: "transfer",
-      date: "21 Jan 2021",
-      amount: "+5400",
-    },
-  ];
+  const cards = useSelector((state: RootState) => state.cards.data);
+  const transactions = useSelector(
+    (state: RootState) => state.transactions.data
+  );
+  const charts = useSelector((state: RootState) => state.charts.data);
+
+  const { weeklyActivity, balanceHistory, expenseStatistics } = charts || {};
+
+  useEffect(() => {
+    dispatch(fetchCards());
+    dispatch(fetchTransactions());
+    dispatch(fetchCharts());
+  }, [dispatch]);
 
   return (
     <DashboardWrapper>
       <SectionWrapper style={{ gridColumn: "1 / 2" }}>
         <Title>My Cards</Title>
-
         <div style={{ display: "flex", gap: "20px" }}>
-          {cards.map((card, index) => (
+          {cards.map((card) => (
             <Card
-              key={index}
-              {...card}
-              themeVariant={index % 2 === 0 ? "dark" : "light"}
+              key={card.id}
+              id={card.id}
+              cardholderName={card.cardholderName}
+              balance={card.balance}
+              cardNumber={card.cardNumber}
+              expiryDate={card.expiryDate}
+              themeVariant={cards.indexOf(card) % 2 === 0 ? "dark" : "light"}
             />
           ))}
         </div>
       </SectionWrapper>
-
       <SectionWrapper style={{ gridColumn: "2 / 3" }}>
         <Title>Recent Transactions</Title>
         <TransactionList transactions={transactions} />
       </SectionWrapper>
-
       <SectionWrapper style={{ gridColumn: "1 / 2" }}>
         <Title>Weekly Activity</Title>
-
-        <WeeklyChart />
+        {weeklyActivity && <WeeklyChart weeklyActivity={weeklyActivity} />}
       </SectionWrapper>
-
       <SectionWrapper style={{ gridColumn: "2 / 3" }}>
         <Title>Expense Statistics</Title>
-
-        <ExpensesChart />
+        {expenseStatistics && <ExpensesChart data={expenseStatistics} />}
       </SectionWrapper>
-
       <CustomRow style={{ gridColumn: "1 / 3" }}>
         <SectionWrapper>
           <Title>Quick Transfer</Title>
-
-          <QuickTransfer />
         </SectionWrapper>
-
         <SectionWrapper>
           <Title>Balance History</Title>
-
-          <BalanceHistoryChart />
+          {balanceHistory && (
+            <BalanceHistoryChart balanceHistory={balanceHistory} />
+          )}
         </SectionWrapper>
       </CustomRow>
     </DashboardWrapper>

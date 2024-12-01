@@ -1,12 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 import Icon from "../common/Icon";
+import { Card as CardType } from "../../types/Card";
 import { formatAndMaskCardNumber } from "../../utils/utils";
 
-interface CardProps {
-  name: string;
-  balance: string;
-  number: string;
+interface CardProps extends CardType {
   themeVariant?: "dark" | "light";
 }
 
@@ -20,8 +18,8 @@ const CardWrapper = styled.div<{ themeVariant: "dark" | "light" }>`
   flex-direction: column;
   background: ${(props) =>
     props.themeVariant === "dark"
-      ? "linear-gradient(180deg, #5B5A6F 0%, #000000 100%)"
-      : "linear-gradient(180deg, #FFFFFF 15%, #FFFFFF 0%)"};
+      ? "linear-gradient(107.38deg, #5B5A6F 2.61%, #000000 101.2%)"
+      : "#FFFFFF"};
   color: ${(props) => (props.themeVariant === "dark" ? "#FFFFFF" : "#343C6A")};
   border: ${(props) =>
     props.themeVariant === "dark" ? null : "1px solid #DFEAF2"};
@@ -39,8 +37,8 @@ const CardBottom = styled.div<{ themeVariant: "dark" | "light" }>`
   height: 70px;
   background: ${(props) =>
     props.themeVariant === "dark"
-      ? "linear-gradient(180deg, #333333 0%, #000000 100%)"
-      : "linear-gradient(180deg, #F8F8F8 0%, #EAEAEA 100%)"};
+      ? "linear-gradient(180deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0) 100%)"
+      : "#FFFFFF"};
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -61,16 +59,16 @@ const CardBalance = styled.h2<{ themeVariant: "dark" | "light" }>`
   font-weight: 600;
   margin: 0;
   color: ${(props) => (props.themeVariant === "dark" ? "#FFFFFF" : "#343C6A")};
+  line-height: 24px;
 `;
 
 const CardNumber = styled.p<{ themeVariant: "dark" | "light" }>`
   font-size: 22px;
   font-weight: 600;
   margin: 0;
-  letter-spacing: 2px;
+  font-family: "Lato", sans-serif;
   color: ${(props) => (props.themeVariant === "dark" ? "#FFFFFF" : "#343C6A")};
 `;
-
 const CardText = styled.p<{ themeVariant: "dark" | "light" }>`
   font-size: 12px;
   font-weight: 400;
@@ -83,7 +81,6 @@ const CardText = styled.p<{ themeVariant: "dark" | "light" }>`
 const ClientValue = styled.p<{ themeVariant: "dark" | "light" }>`
   font-size: 16px;
   margin: 0;
-
   color: ${(props) => (props.themeVariant === "dark" ? "#FFFFFF" : "#343C6A")};
 `;
 
@@ -97,11 +94,11 @@ const BottomIconContainer = styled.div`
   position: absolute;
   right: 24.23px;
 `;
-
 const Card: React.FC<CardProps> = ({
-  name,
+  cardholderName,
   balance,
-  number,
+  cardNumber,
+  expiryDate,
   themeVariant = "dark",
 }) => {
   return (
@@ -121,17 +118,19 @@ const Card: React.FC<CardProps> = ({
         <div style={{ display: "flex", alignItems: "center" }}>
           <div style={{ marginRight: "72px" }}>
             <CardText themeVariant={themeVariant}>CARD HOLDER</CardText>
-            <ClientValue themeVariant={themeVariant}>{name}</ClientValue>
+            <ClientValue themeVariant={themeVariant}>
+              {cardholderName}
+            </ClientValue>
           </div>
           <div>
             <CardText themeVariant={themeVariant}>VALID THRU</CardText>
-            <ClientValue themeVariant={themeVariant}>12/22</ClientValue>
+            <ClientValue themeVariant={themeVariant}>{expiryDate}</ClientValue>
           </div>
         </div>
       </CardTop>
       <CardBottom themeVariant={themeVariant}>
         <CardNumber themeVariant={themeVariant}>
-          {formatAndMaskCardNumber(number)}
+          {formatAndMaskCardNumber(cardNumber)}
         </CardNumber>
         <BottomIconContainer>
           <Icon

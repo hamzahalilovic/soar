@@ -1,20 +1,18 @@
 import React from "react";
 import styled from "styled-components";
-import Icon, { IconName } from "../common/Icon";
+import Icon from "../common/Icon";
+import { Transaction } from "../../types/Transaction";
+import { formatCurrencyAmount, isPositiveNumber } from "../../utils/utils";
 
-export interface Transaction {
-  icon: IconName;
-  description: string;
-  type: "deposit-card" | "deposit-paypal" | "transfer";
-  date: string;
-  amount: string;
+interface TransactionListProps {
+  transactions: Transaction[];
 }
 
 const ScrollableContainer = styled.div`
   width: 350px;
   height: 235px;
   overflow-y: auto;
-  border-radius: 8px;
+  border-radius: 25px;
   background-color: #ffffff;
   padding: 25px 0px;
 `;
@@ -86,13 +84,11 @@ const Amount = styled.span<{ isPositive: boolean }>`
   color: ${(props) => (props.isPositive ? "#41D4A8" : "#FF4B4A")};
 `;
 
-const TransactionList: React.FC<{ transactions: Transaction[] }> = ({
-  transactions,
-}) => (
+const TransactionList: React.FC<TransactionListProps> = ({ transactions }) => (
   <ScrollableContainer>
     <ListWrapper>
-      {transactions.map((item, index) => (
-        <TransactionItem key={index}>
+      {transactions.map((item) => (
+        <TransactionItem key={item.id}>
           <TransactionDetails>
             <IconWrapper type={item.type}>
               <Icon
@@ -114,8 +110,8 @@ const TransactionList: React.FC<{ transactions: Transaction[] }> = ({
               <small>{item.date}</small>
             </TransactionDescription>
           </TransactionDetails>
-          <Amount isPositive={item.amount.startsWith("+")}>
-            {item.amount}
+          <Amount isPositive={isPositiveNumber(item.amount)}>
+            {formatCurrencyAmount(item.amount)}
           </Amount>
         </TransactionItem>
       ))}

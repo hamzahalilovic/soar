@@ -10,6 +10,7 @@ import {
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
 import styled from "styled-components";
+import { WeeklyActivity } from "../../types/Chart";
 
 ChartJS.register(
   BarElement,
@@ -20,6 +21,10 @@ ChartJS.register(
   Legend
 );
 
+interface WeeklyChartProps {
+  weeklyActivity: WeeklyActivity;
+}
+
 const Wrapper = styled.div`
   height: 322px;
   display: flex;
@@ -29,20 +34,20 @@ const Wrapper = styled.div`
   background-color: white;
 `;
 
-const WeeklyChart: React.FC = () => {
+const WeeklyChart: React.FC<WeeklyChartProps> = ({ weeklyActivity }) => {
   const data = {
-    labels: ["Sat", "Sun", "Mon", "Tue", "Wed", "Thu", "Fri"],
+    labels: weeklyActivity.labels,
     datasets: [
       {
         label: "Deposit",
-        data: [200, 300, 400, 300, 500, 600, 400],
+        data: weeklyActivity.deposit,
         backgroundColor: "#396AFF",
         borderRadius: 15,
         barThickness: 15,
       },
       {
         label: "Withdraw",
-        data: [400, 500, 300, 600, 200, 300, 500],
+        data: weeklyActivity.withdraw,
         backgroundColor: "#232323",
         borderRadius: 15,
         barThickness: 15,
@@ -73,51 +78,22 @@ const WeeklyChart: React.FC = () => {
     },
     scales: {
       x: {
-        grid: {
-          display: false,
-        },
-        ticks: {
-          display: true,
-          color: "#8BA3CB",
-          font: {
-            size: 14,
-          },
-        },
-        border: {
-          display: false,
-        },
+        grid: { display: false },
+        ticks: { color: "#8BA3CB", font: { size: 14 } },
+        border: { display: false },
       },
       y: {
-        grid: {
-          display: true,
-          color: "#F3F3F5",
-        },
-        ticks: {
-          display: true,
-          color: "#8BA3CB",
-          font: {
-            size: 14,
-          },
-        },
-        border: {
-          display: false,
-        },
+        grid: { color: "#F3F3F5" },
+        ticks: { color: "#8BA3CB", font: { size: 14 } },
+        border: { display: false },
         beginAtZero: true,
       },
     },
     layout: {
-      padding: {
-        top: 20,
-        right: 20,
-        bottom: 20,
-        left: 20,
-      },
+      padding: { top: 20, right: 20, bottom: 20, left: 20 },
     },
     elements: {
-      bar: {
-        borderRadius: 15,
-        borderSkipped: false,
-      },
+      bar: { borderRadius: 15, borderSkipped: false },
     },
   };
 
