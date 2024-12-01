@@ -1,17 +1,27 @@
 const express = require("express");
-const cors = require("cors");
-
 const app = express();
-const PORT = 5001;
+const cors = require("cors");
 
 app.use(cors());
 app.use(express.json());
 
-app.use("/api/user", require("./routes/user"));
-app.use("/api/transactions", require("./routes/transactions"));
-app.use("/api/cards", require("./routes/cards"));
-app.use("/api/charts", require("./routes/charts"));
+const cards = require("./data/cards.json");
+const transactions = require("./data/transactions.json");
+const charts = require("./data/charts.json");
 
+app.get("/cards", (req, res) => {
+  res.json(cards);
+});
+
+app.get("/transactions", (req, res) => {
+  res.json(transactions);
+});
+
+app.get("/charts", (req, res) => {
+  res.json(charts);
+});
+
+const PORT = 5001;
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });

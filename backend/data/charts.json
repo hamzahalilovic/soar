@@ -7,5 +7,67 @@
   "balanceHistory": {
     "labels": ["Jul", "Aug", "Sep", "Oct", "Nov", "Dec", "Jan"],
     "balances": [200, 400, 600, 800, 400, 700, 600]
-  }
+  },
+  "transactions": [
+    {
+      "icon": "cardDeposit",
+      "description": "Deposit from my Card",
+      "type": "deposit-card",
+      "date": "28 Jan 2021",
+      "amount": -850
+    },
+    {
+      "icon": "paypal",
+      "description": "Deposit Paypal",
+      "type": "deposit-paypal",
+      "date": "25 Jan 2021",
+      "amount": 2500
+    },
+    {
+      "icon": "transfer",
+      "description": "Jemi Wilson",
+      "type": "transfer",
+      "date": "21 Jan 2021",
+      "amount": 5400
+    },
+    {
+      "icon": "cardDeposit",
+      "description": "Deposit from my Card",
+      "type": "deposit-card",
+      "date": "28 Jan 2021",
+      "amount": -850
+    },
+    {
+      "icon": "paypal",
+      "description": "Deposit Paypal",
+      "type": "deposit-paypal",
+      "date": "25 Jan 2021",
+      "amount": 2500
+    },
+    {
+      "icon": "transfer",
+      "description": "Jemi Wilson",
+      "type": "transfer",
+      "date": "21 Jan 2021",
+      "amount": 5400
+    }
+  ],
+  "expenseStatistics": [
+    {
+      "label": "Entertainment",
+      "value": 700
+    },
+    {
+      "label": "Bill Expense",
+      "value": 800
+    },
+    {
+      "label": "Investment",
+      "value": 1000
+    },
+    {
+      "label": "Others",
+      "value": 600
+    }
+  ]
 }
