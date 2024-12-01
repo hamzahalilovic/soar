@@ -5,6 +5,7 @@ import styled from "styled-components";
 import { fetchCards } from "../redux/slices/cardsSlice";
 import { fetchTransactions } from "../redux/slices/transactionsSlice";
 import { fetchCharts } from "../redux/slices/chartsSlice";
+import { fetchContacts } from "../redux/slices/contactsSlice";
 import Card from "../components/dashboard/Card";
 import TransactionList from "../components/dashboard/TransactionList";
 import WeeklyChart from "../components/dashboard/WeeklyChart";
@@ -12,6 +13,7 @@ import ExpensesChart from "../components/dashboard/ExpensesChart";
 import BalanceHistoryChart from "../components/dashboard/BalanceHistoryChart";
 
 import { AppDispatch, RootState } from "../redux/store";
+import QuickTransfer from "../components/dashboard/QuickTransfer";
 
 const DashboardWrapper = styled.div`
   padding: 24px 40px;
@@ -35,8 +37,8 @@ const Title = styled.h2`
 
 const CustomRow = styled.div`
   display: grid;
-  grid-template-columns: 3fr 2fr;
-  gap: 20px;
+  grid-template-columns: 2fr 3fr;
+  gap: 30px;
 `;
 
 const DashboardPage: React.FC = () => {
@@ -47,6 +49,7 @@ const DashboardPage: React.FC = () => {
     (state: RootState) => state.transactions.data
   );
   const charts = useSelector((state: RootState) => state.charts.data);
+  const contacts = useSelector((state: RootState) => state.contacts.data);
 
   const { weeklyActivity, balanceHistory, expenseStatistics } = charts || {};
 
@@ -54,6 +57,7 @@ const DashboardPage: React.FC = () => {
     dispatch(fetchCards());
     dispatch(fetchTransactions());
     dispatch(fetchCharts());
+    dispatch(fetchContacts());
   }, [dispatch]);
 
   return (
@@ -89,6 +93,7 @@ const DashboardPage: React.FC = () => {
       <CustomRow style={{ gridColumn: "1 / 3" }}>
         <SectionWrapper>
           <Title>Quick Transfer</Title>
+          <QuickTransfer contacts={contacts} />
         </SectionWrapper>
         <SectionWrapper>
           <Title>Balance History</Title>

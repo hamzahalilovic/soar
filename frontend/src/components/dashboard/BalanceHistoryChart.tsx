@@ -11,6 +11,7 @@ import {
   Filler,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
+
 import styled from "styled-components";
 import { BalanceHistory } from "../../types/Chart";
 
@@ -24,7 +25,6 @@ ChartJS.register(
   Legend,
   Filler
 );
-
 interface BalanceHistoryChartProps {
   balanceHistory: BalanceHistory;
 }
@@ -44,21 +44,94 @@ const BalanceHistoryChart: React.FC<BalanceHistoryChartProps> = ({
 }) => {
   const data = {
     labels: balanceHistory.labels,
+
     datasets: [
       {
         label: "Balance",
         data: balanceHistory.balances,
+
         borderColor: "#1814F3",
         borderWidth: 3,
         fill: "start",
         tension: 0.4,
+        pointRadius: 0,
+        backgroundColor: (context: any) => {
+          const chart = context.chart;
+          const { ctx, chartArea } = chart;
+
+          if (!chartArea) {
+            return null;
+          }
+          const gradient = ctx.createLinearGradient(
+            0,
+            chartArea.bottom,
+            0,
+            chartArea.top
+          );
+          gradient.addColorStop(0, "rgba(45, 96, 255, 0)");
+          gradient.addColorStop(1, "rgba(45, 96, 255, 0.25)");
+          return gradient;
+        },
       },
     ],
   };
 
+  const options = {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        display: false,
+      },
+      tooltip: {
+        enabled: true,
+        backgroundColor: "rgba(0, 0, 0, 0.7)",
+        titleFont: {
+          size: 14,
+        },
+        bodyFont: {
+          size: 12,
+        },
+      },
+    },
+    scales: {
+      x: {
+        grid: {
+          color: "#E6EFF5",
+          borderDash: [5, 5],
+        },
+        ticks: {
+          color: "#8BA3CB",
+          font: {
+            size: 12,
+          },
+        },
+        border: {
+          display: false,
+        },
+      },
+      y: {
+        grid: {
+          color: "#E6EFF5",
+          borderDash: [5, 5],
+        },
+        ticks: {
+          color: "#8BA3CB",
+          font: {
+            size: 12,
+          },
+        },
+        border: {
+          display: false,
+        },
+        beginAtZero: true,
+      },
+    },
+  };
+
   return (
     <Wrapper>
-      <Line data={data} options={{ responsive: true }} />
+      <Line data={data} options={options} />
     </Wrapper>
   );
 };
