@@ -49,6 +49,11 @@ interface IconProps {
 
 const Icon: React.FC<IconProps> = ({ name, size = 24, color = "inherit" }) => {
   const SvgIcon = iconRegistry[name];
+
+  if (!SvgIcon) {
+    return null;
+  }
+
   return <SvgIcon width={size} height={size} style={{ fill: color }} />;
 };
 
