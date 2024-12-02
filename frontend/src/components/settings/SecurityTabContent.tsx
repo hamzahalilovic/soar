@@ -1,10 +1,16 @@
 import React from "react";
+import styled from "styled-components";
+import Text from "../common/Text";
 
+const Wrapper = styled.div`
+  width: 100%;
+  height: 100vh;
+`;
 const SecurityTabContent: React.FC = () => {
   return (
-    <div>
-      <h1>Security Tab Conent</h1>
-    </div>
+    <Wrapper>
+      <Text>Security Tab Content</Text>
+    </Wrapper>
   );
 };
 

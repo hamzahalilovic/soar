@@ -9,12 +9,15 @@ interface TransactionListProps {
 }
 
 const ScrollableContainer = styled.div`
-  width: 350px;
+  // width: 350px;
   height: 235px;
   overflow-y: auto;
   border-radius: 25px;
   background-color: #ffffff;
   padding: 25px 0px;
+  @media (max-width: 768px) {
+    width: 325px;
+  }
 `;
 
 const ListWrapper = styled.ul`

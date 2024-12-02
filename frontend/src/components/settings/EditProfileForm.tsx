@@ -33,7 +33,8 @@ const Form = styled.form`
   gap: 20px;
 
   @media (max-width: 768px) {
-    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column;
   }
 `;
 
@@ -49,6 +50,8 @@ const ProfilePictureWrapper = styled.div`
 
   @media (max-width: 768px) {
     margin-bottom: 15px;
+    width: 100px;
+    height: 100px;
   }
 `;
 
@@ -72,8 +75,8 @@ const Input = styled.input`
   }
 
   @media (max-width: 768px) {
-    width: 100%;
-    border-radius: 15px;
+    width: 285px;
+    height: 40px;
   }
 `;
 
@@ -110,6 +113,9 @@ const SaveButton = styled.button`
   &:hover {
     background: #444444;
   }
+  @media (max-width: 768px) {
+    width: 285px;
+  }
 `;
 
 const ProfileImage = styled.img`
@@ -117,6 +123,12 @@ const ProfileImage = styled.img`
   height: 90px;
   border-radius: 50%;
   object-fit: cover;
+
+  @media (max-width: 768px) {
+    width: 100px;
+    object-fit: cover;
+    height: 100px;
+  }
 `;
 
 const EditIconWrapper = styled.label`

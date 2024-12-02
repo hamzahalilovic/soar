@@ -12,11 +12,16 @@ interface ExpensesChartProps {
 
 const Wrapper = styled.div`
   height: 322px;
+
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 25px;
   background-color: white;
+
+  @media (max-width: 768px) {
+    width: 325px;
+  }
 `;
 
 const ExpensesChart: React.FC<ExpensesChartProps> = ({ data }) => {

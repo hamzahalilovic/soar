@@ -27,11 +27,17 @@ interface WeeklyChartProps {
 
 const Wrapper = styled.div`
   height: 322px;
+
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 25px;
   background-color: white;
+
+  @media (max-width: 768px) {
+    width: 325px;
+    height: 250px;
+  }
 `;
 
 const WeeklyChart: React.FC<WeeklyChartProps> = ({ weeklyActivity }) => {
@@ -42,15 +48,15 @@ const WeeklyChart: React.FC<WeeklyChartProps> = ({ weeklyActivity }) => {
         label: "Deposit",
         data: weeklyActivity.deposit,
         backgroundColor: "#396AFF",
-        borderRadius: 15,
-        barThickness: 15,
+        borderRadius: 10,
+        barThickness: 12,
       },
       {
         label: "Withdraw",
         data: weeklyActivity.withdraw,
         backgroundColor: "#232323",
-        borderRadius: 15,
-        barThickness: 15,
+        borderRadius: 10,
+        barThickness: 12,
       },
     ],
   };
@@ -66,11 +72,10 @@ const WeeklyChart: React.FC<WeeklyChartProps> = ({ weeklyActivity }) => {
         labels: {
           usePointStyle: true,
           pointStyle: "circle",
-          boxWidth: 15,
-          padding: 30,
+          padding: 8,
           color: "#8BA3CB",
           font: {
-            size: 14,
+            size: 12,
             weight: "bold" as const,
           },
         },
@@ -79,21 +84,27 @@ const WeeklyChart: React.FC<WeeklyChartProps> = ({ weeklyActivity }) => {
     scales: {
       x: {
         grid: { display: false },
-        ticks: { color: "#8BA3CB", font: { size: 14 } },
+        ticks: {
+          color: "#8BA3CB",
+          font: { size: 11 },
+        },
         border: { display: false },
+        offset: true,
+        categoryPercentage: 0.6,
+        categorySpacing: 0.2,
       },
       y: {
         grid: { color: "#F3F3F5" },
-        ticks: { color: "#8BA3CB", font: { size: 14 } },
+        ticks: { color: "#8BA3CB", font: { size: 11 } },
         border: { display: false },
         beginAtZero: true,
       },
     },
     layout: {
-      padding: { top: 20, right: 20, bottom: 20, left: 20 },
+      padding: { top: 15, right: 15, bottom: 15, left: 15 },
     },
     elements: {
-      bar: { borderRadius: 15, borderSkipped: false },
+      bar: { borderRadius: 10, borderSkipped: false },
     },
   };
 

@@ -14,29 +14,40 @@ const Wrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   border-radius: 20px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05);
   position: relative;
-  padding: 25px 30px;
+  padding: 20px 25px;
+  background-color: #ffffff;
+
+  @media (max-width: 768px) {
+    width: 325px;
+    padding: 15px 15px;
+    height: auto;
+  }
 `;
 
 const ContactListWrapper = styled.div`
   position: relative;
   width: 100%;
   overflow: hidden;
+  @media (max-width: 768px) {
+    width: auto;
+    padding: 15px 15px;
+    height: auto;
+  }
 `;
 
 const ChevronIconWrapper = styled.div<{ position: "left" | "right" }>`
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  ${(props) => (props.position === "left" ? "left: 26px;" : "right: 26px;")}
-  ${(props) => (props.position === "left" ? "top: 76px;" : "top: 76px;")}
+  ${(props) => (props.position === "left" ? "left: 20px;" : "right: 20px;")}
+  ${(props) => (props.position === "left" ? "top: 70px;" : "top: 70px;")}
   display: flex;
   justify-content: center;
   align-items: center;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05);
-  width: 40px;
-  height: 40px;
+  width: 35px;
+  height: 35px;
   border-radius: 50%;
   background-color: white;
   cursor: pointer;
@@ -50,7 +61,7 @@ const ChevronIconWrapper = styled.div<{ position: "left" | "right" }>`
 
 const ContactList = styled.div<{ adjustMargin: boolean }>`
   display: flex;
-  gap: 28px;
+  gap: 20px;
   transition: transform 0.3s ease-in-out, margin-left 0.3s ease-in-out;
   margin-left: ${(props) => (props.adjustMargin ? "33px" : "0")};
 `;
@@ -58,26 +69,26 @@ const ContactList = styled.div<{ adjustMargin: boolean }>`
 const ContactContainer = styled.div<{ isSelected: boolean }>`
   text-align: center;
   flex: none;
-  width: 100px;
+  width: 90px;
   cursor: pointer;
 
   img {
     border-radius: 50%;
-    width: 70px;
-    height: 70px;
+    width: 60px;
+    height: 60px;
     object-fit: cover;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
   }
 
   div {
-    font-size: 16px;
+    font-size: 14px;
     font-weight: ${(props) => (props.isSelected ? "600" : "400")};
-    line-height: 19.36px;
+    line-height: 18px;
     color: #343c6a;
   }
 
   small {
-    font-size: 15px;
+    font-size: 12px;
     font-weight: ${(props) => (props.isSelected ? "600" : "400")};
     color: #718ebf;
   }
@@ -133,17 +144,22 @@ const Input = styled.input`
   &::placeholder {
     color: #718ebf;
   }
+
+  @media (max-width: 768px) {
+    max-width: 70px;
+    font-size: 12px; /* Smaller font size */
+  }
 `;
 
 const SendButton = styled.button`
-  width: 125px;
-  padding: 0px 24px;
-  height: 50px;
+  width: 110px;
+  padding: 0px 20px;
+  height: 45px;
   border: none;
   border-radius: 50px;
   background-color: #232323;
   color: white;
-  font-size: 16px;
+  font-size: 14px; /* Reduced font size */
   font-weight: 600;
   display: flex;
   align-items: center;
@@ -198,12 +214,12 @@ const QuickTransfer: React.FC<QuickTransferProps> = ({ contacts }) => {
     <Wrapper>
       {visibleIndex > 0 && (
         <ChevronIconWrapper position="left" onClick={handlePrev}>
-          <Icon name="chevronLeft" size={20} color="#718EBF" />
+          <Icon name="chevronLeft" size={18} color="#718EBF" />
         </ChevronIconWrapper>
       )}
       {visibleIndex + contactsToShow < contacts.length && (
         <ChevronIconWrapper position="right" onClick={handleNext}>
-          <Icon name="chevronRight" size={20} color="#718EBF" />
+          <Icon name="chevronRight" size={18} color="#718EBF" />
         </ChevronIconWrapper>
       )}
       <ContactListWrapper>
@@ -234,7 +250,7 @@ const QuickTransfer: React.FC<QuickTransferProps> = ({ contacts }) => {
             placeholder="0.00"
           />
           <SendButton onClick={handleSend}>
-            Send <Icon name="send" size={20} color="white" />
+            Send <Icon name="send" size={18} color="white" />
           </SendButton>
         </InputWrapper>
       </InputContainer>

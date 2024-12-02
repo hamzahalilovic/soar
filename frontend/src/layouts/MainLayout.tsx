@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Sidebar from "../components/layout/Sidebar";
 import Navbar from "../components/layout/Navbar";
@@ -6,16 +6,18 @@ import { Outlet } from "react-router-dom";
 
 const LayoutWrapper = styled.div`
   display: flex;
-  height: 100vh;
+  width: 100wv;
 `;
 
 const ContentWrapper = styled.div`
   flex: 1;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-`;
 
+  background-color: #f5f7fa;
+  min-height: 100vh;
+
+  @media (max-width: 768px) {
+  }
+`;
 const MainContent = styled.main`
   flex: 1;
 
@@ -24,11 +26,15 @@ const MainContent = styled.main`
 `;
 
 const MainLayout: React.FC = () => {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+  const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
+
   return (
     <LayoutWrapper>
-      <Sidebar />
+      <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
       <ContentWrapper>
-        <Navbar />
+        <Navbar toggleSidebar={toggleSidebar} />
         <MainContent>
           <Outlet />
         </MainContent>
