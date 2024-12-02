@@ -79,4 +79,8 @@ app.post("/user/upload", upload.single("profileImage"), async (req, res) => {
   }
 });
 
+app.get("/", (req, res) => {
+  res.json({ message: "API is running on Vercel!" });
+});
+
 module.exports = app;
