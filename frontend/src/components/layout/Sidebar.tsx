@@ -1,19 +1,45 @@
 import React from "react";
 import styled from "styled-components";
 import { Link, useLocation } from "react-router-dom";
-import Icon, { IconName } from "../common/Icon";
 import Text from "../common/Text";
+import Icon, { IconName } from "../common/Icon";
 
-const SidebarWrapper = styled.div`
+const SidebarWrapper = styled.div<{ isOpen: boolean }>`
   width: 250px;
-  height: 100vh;
+  height: auto;
   background-color: #fff;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 31px 0px;
   border-right: 1px solid #e6eff5;
-  position: relative;
+  position: fixed;
+  left: ${(props) => (props.isOpen ? "0" : "-100%")};
+  top: 0;
+  z-index: 1000;
+  transition: all 0.3s ease;
+
+  @media (min-width: 768px) {
+    left: 0;
+    position: static;
+    border-right: 1px solid #e6eff5;
+    transition: none;
+  }
+`;
+
+const Overlay = styled.div<{ isOpen: boolean }>`
+  display: ${(props) => (props.isOpen ? "block" : "none")};
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+
+  z-index: 999;
+
+  @media (min-width: 768px) {
+    display: none;
+  }
 `;
 
 const Logo = styled(Link)`
@@ -81,7 +107,12 @@ const Indicator = styled.div<{ isActive: boolean }>`
   border-bottom-right-radius: 10px;
 `;
 
-const Sidebar: React.FC = () => {
+interface SidebarProps {
+  isOpen: boolean;
+  toggleSidebar: () => void;
+}
+
+const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
   const location = useLocation();
 
   const menuItems: { path: string; label: string; icon: IconName }[] = [
@@ -97,47 +128,50 @@ const Sidebar: React.FC = () => {
   ];
 
   return (
-    <SidebarWrapper>
-      <Logo to="/">
-        <Icon name="logo" size={35} color="#232323" />
-        <Text
-          color="#343C6A"
-          weight={800}
-          size="25px"
-          lineHeight="30.26px"
-          margin="0 0 0 10px"
-        >
-          Soar Task
-        </Text>
-      </Logo>
-      <NavList>
-        {menuItems.map((item) => {
-          const isActive = location.pathname === item.path;
-          const isDisabled =
-            item.label !== "Dashboard" && item.label !== "Settings";
-          return (
-            <NavItemWrapper key={item.path}>
-              <Indicator isActive={isActive} />
-              <StyledNavItem
-                to={isDisabled ? "#" : item.path}
-                isActive={isActive}
-                disabled={isDisabled}
-                onClick={(e) => isDisabled && e.preventDefault()}
-              >
-                <Icon
-                  name={item.icon}
-                  size={25}
-                  color={
-                    isActive ? "#232323" : isDisabled ? "#E0E0E0" : "#B1B1B1"
-                  }
-                />
-                {item.label}
-              </StyledNavItem>
-            </NavItemWrapper>
-          );
-        })}
-      </NavList>
-    </SidebarWrapper>
+    <>
+      <Overlay isOpen={isOpen} onClick={toggleSidebar} />
+      <SidebarWrapper isOpen={isOpen}>
+        <Logo to="/">
+          <Icon name="logo" size={35} color="#232323" />
+          <Text
+            color="#343C6A"
+            weight={800}
+            size="25px"
+            lineHeight="30.26px"
+            margin="0 0 0 10px"
+          >
+            Soar Task
+          </Text>
+        </Logo>
+        <NavList>
+          {menuItems.map((item) => {
+            const isActive = location.pathname === item.path;
+            const isDisabled =
+              item.label !== "Dashboard" && item.label !== "Settings";
+            return (
+              <NavItemWrapper key={item.path}>
+                <Indicator isActive={isActive} />
+                <StyledNavItem
+                  to={isDisabled ? "#" : item.path}
+                  isActive={isActive}
+                  disabled={isDisabled}
+                  onClick={(e) => isDisabled && e.preventDefault()}
+                >
+                  <Icon
+                    name={item.icon}
+                    size={25}
+                    color={
+                      isActive ? "#232323" : isDisabled ? "#E0E0E0" : "#B1B1B1"
+                    }
+                  />
+                  {item.label}
+                </StyledNavItem>
+              </NavItemWrapper>
+            );
+          })}
+        </NavList>
+      </SidebarWrapper>
+    </>
   );
 };
 

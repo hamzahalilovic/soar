@@ -18,9 +18,18 @@ const s3 = new S3Client({
 
 let user = {
   id: 1,
-  name: "John Doe",
-  email: "john@example.com",
-  profileImage: "",
+  profileImage:
+    "https://soar-task-bucket.s3.us-east-1.amazonaws.com/1733111470372-Screenshot_2024-12-02_at_1.08.34___AM.png",
+  name: "Charlene Reed",
+  username: "CharleneReeds",
+  email: "charlenereed@gmail.com",
+  password: "12321421",
+  dateOfBirth: "1990-01-25",
+  presentAddress: "San Jose, California, USA",
+  permanentAddress: "San Jose, California, USA",
+  city: "San Joses",
+  postalCode: "45962",
+  country: "USA",
 };
 
 const upload = multer({ storage: multer.memoryStorage() });

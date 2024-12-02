@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, lazy, Suspense } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 
@@ -6,14 +6,22 @@ import { fetchCards } from "../redux/slices/cardsSlice";
 import { fetchTransactions } from "../redux/slices/transactionsSlice";
 import { fetchCharts } from "../redux/slices/chartsSlice";
 import { fetchContacts } from "../redux/slices/contactsSlice";
-import Card from "../components/dashboard/Card";
-import TransactionList from "../components/dashboard/TransactionList";
-import WeeklyChart from "../components/dashboard/WeeklyChart";
-import ExpensesChart from "../components/dashboard/ExpensesChart";
-import BalanceHistoryChart from "../components/dashboard/BalanceHistoryChart";
-
 import { AppDispatch, RootState } from "../redux/store";
-import QuickTransfer from "../components/dashboard/QuickTransfer";
+
+const Card = lazy(() => import("../components/dashboard/Card"));
+const TransactionList = lazy(
+  () => import("../components/dashboard/TransactionList")
+);
+const WeeklyChart = lazy(() => import("../components/dashboard/WeeklyChart"));
+const ExpensesChart = lazy(
+  () => import("../components/dashboard/ExpensesChart")
+);
+const BalanceHistoryChart = lazy(
+  () => import("../components/dashboard/BalanceHistoryChart")
+);
+const QuickTransfer = lazy(
+  () => import("../components/dashboard/QuickTransfer")
+);
 
 const DashboardWrapper = styled.div`
   padding: 24px 40px;
@@ -21,6 +29,26 @@ const DashboardWrapper = styled.div`
   grid-template-columns: 2fr 1fr;
   row-gap: 24px;
   column-gap: 30px;
+
+  @media (max-width: 768px) {
+    display: flex;
+    width: 100vw;
+    flex-direction: column;
+    align-items: center;
+  }
+`;
+
+const CardsWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+
+  @media (max-width: 768px) {
+    display: flex;
+    width: 100vw;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
 `;
 
 const SectionWrapper = styled.div`
@@ -35,10 +63,48 @@ const Title = styled.h2`
   color: #343c6a;
 `;
 
+const CardsTitleWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  @media (max-width: 768px) {
+    display: flex;
+
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+`;
+
 const CustomRow = styled.div`
   display: grid;
   grid-template-columns: 2fr 3fr;
   gap: 30px;
+  grid-column: 1/3;
+
+  @media (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+  }
+`;
+
+const SeeAllButton = styled.button`
+  background: none;
+  border: none;
+  color: #343c6a;
+  font-size: 22px;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: left;
+  padding: 0;
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  &:focus {
+    outline: none;
+  }
 `;
 
 const DashboardPage: React.FC = () => {
@@ -63,43 +129,64 @@ const DashboardPage: React.FC = () => {
   return (
     <DashboardWrapper>
       <SectionWrapper style={{ gridColumn: "1 / 2" }}>
-        <Title>My Cards</Title>
-        <div style={{ display: "flex", gap: "30px" }}>
-          {cards.map((card) => (
-            <Card
-              key={card.id}
-              id={card.id}
-              cardholderName={card.cardholderName}
-              balance={card.balance}
-              cardNumber={card.cardNumber}
-              expiryDate={card.expiryDate}
-              themeVariant={cards.indexOf(card) % 2 === 0 ? "dark" : "light"}
-            />
-          ))}
-        </div>
+        <CardsTitleWrapper>
+          <Title>My Cards</Title>
+          <SeeAllButton onClick={() => {}}>See All</SeeAllButton>
+        </CardsTitleWrapper>
+
+        <CardsWrapper>
+          <Suspense fallback={<div>Loading cards...</div>}>
+            {cards.map((card) => (
+              <Card
+                key={card.id}
+                id={card.id}
+                cardholderName={card.cardholderName}
+                balance={card.balance}
+                cardNumber={card.cardNumber}
+                expiryDate={card.expiryDate}
+                themeVariant={cards.indexOf(card) % 2 === 0 ? "dark" : "light"}
+              />
+            ))}
+          </Suspense>
+        </CardsWrapper>
       </SectionWrapper>
+
       <SectionWrapper style={{ gridColumn: "2 / 3" }}>
         <Title>Recent Transactions</Title>
-        <TransactionList transactions={transactions} />
+        <Suspense fallback={<div>Loading transactions...</div>}>
+          <TransactionList transactions={transactions} />
+        </Suspense>
       </SectionWrapper>
+
       <SectionWrapper style={{ gridColumn: "1 / 2" }}>
         <Title>Weekly Activity</Title>
-        {weeklyActivity && <WeeklyChart weeklyActivity={weeklyActivity} />}
+        <Suspense fallback={<div>Loading Weekly Activity...</div>}>
+          {weeklyActivity && <WeeklyChart weeklyActivity={weeklyActivity} />}
+        </Suspense>
       </SectionWrapper>
+
       <SectionWrapper style={{ gridColumn: "2 / 3" }}>
         <Title>Expense Statistics</Title>
-        {expenseStatistics && <ExpensesChart data={expenseStatistics} />}
+        <Suspense fallback={<div>Loading Expense Statistics...</div>}>
+          {expenseStatistics && <ExpensesChart data={expenseStatistics} />}
+        </Suspense>
       </SectionWrapper>
-      <CustomRow style={{ gridColumn: "1 / 3" }}>
+
+      <CustomRow>
         <SectionWrapper>
           <Title>Quick Transfer</Title>
-          <QuickTransfer contacts={contacts} />
+          <Suspense fallback={<div>Loading Quick Transfer...</div>}>
+            <QuickTransfer contacts={contacts} />
+          </Suspense>
         </SectionWrapper>
+
         <SectionWrapper>
           <Title>Balance History</Title>
-          {balanceHistory && (
-            <BalanceHistoryChart balanceHistory={balanceHistory} />
-          )}
+          <Suspense fallback={<div>Loading Balance History...</div>}>
+            {balanceHistory && (
+              <BalanceHistoryChart balanceHistory={balanceHistory} />
+            )}
+          </Suspense>
         </SectionWrapper>
       </CustomRow>
     </DashboardWrapper>

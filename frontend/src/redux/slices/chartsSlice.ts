@@ -3,7 +3,9 @@ import axios from "axios";
 import { ChartData } from "../../types/Chart";
 
 export const fetchCharts = createAsyncThunk("charts/fetchCharts", async () => {
-  const response = await axios.get<ChartData>("http://localhost:5001/charts");
+  const response = await axios.get<ChartData>(
+    "https://soar-backend.vercel.app/data/charts"
+  );
   return response.data;
 });
 
