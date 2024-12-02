@@ -3,7 +3,9 @@ import axios from "axios";
 import { Card } from "../../types/Card";
 
 export const fetchCards = createAsyncThunk("cards/fetchCards", async () => {
-  const response = await axios.get<Card[]>("http://localhost:5001/cards");
+  const response = await axios.get<Card[]>(
+    "https://soar-backend.vercel.app/data/cards"
+  );
   return response.data;
 });
 
