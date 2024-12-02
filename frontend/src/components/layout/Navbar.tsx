@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import { useSelector } from "react-redux";
+import { RootState } from "../../redux/store";
 import Icon from "../common/Icon";
 
 const NavbarWrapper = styled.div`
@@ -59,6 +61,7 @@ const IconButton = styled.button<{ isActive?: boolean }>`
     width: 40px;
     height: 40px;
     border-radius: 50%;
+    object-fit: cover;
   }
 `;
 const StyledInput = styled.input`
@@ -76,7 +79,23 @@ const StyledInput = styled.input`
   }
 `;
 
+const ProfileImage = styled.img`
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+`;
+
 const Navbar: React.FC = () => {
+  const user = useSelector((state: RootState) => state.user.user);
+
+  const defaultImage =
+    "https://www.kindpng.com/picc/m/252-2524695_dummy-profile-image-jpg-hd-png-download.png";
+
+  const profileImage = user?.profileImage
+    ? `http://localhost:5001${user.profileImage}`
+    : defaultImage;
+
   return (
     <NavbarWrapper>
       <Title>Overview</Title>
@@ -92,12 +111,8 @@ const Navbar: React.FC = () => {
         <IconButton>
           <Icon name="notification" size={24} />
         </IconButton>
-        <IconButton>
-          <img
-            src="https://www.kindpng.com/picc/m/252-2524695_dummy-profile-image-jpg-hd-png-download.png"
-            alt="Profile"
-          />
-        </IconButton>
+
+        <ProfileImage src={profileImage} alt="Profile" />
       </Actions>
     </NavbarWrapper>
   );

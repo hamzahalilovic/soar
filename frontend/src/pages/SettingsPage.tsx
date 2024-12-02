@@ -6,12 +6,7 @@ import PreferencesTabContent from "../components/settings/PreferencesTabConent";
 import SecurityTabContent from "../components/settings/SecurityTabContent";
 
 const SettingsWrapper = styled.div`
-  padding: 20px;
-`;
-
-const PageTitle = styled.h1`
-  font-size: 24px;
-  margin-bottom: 20px;
+  padding: 24px 40px;
 `;
 
 const SettingsPage: React.FC = () => {
@@ -23,7 +18,6 @@ const SettingsPage: React.FC = () => {
 
   return (
     <SettingsWrapper>
-      <PageTitle>Setting</PageTitle>
       <Tabs tabs={tabs} />
     </SettingsWrapper>
   );
