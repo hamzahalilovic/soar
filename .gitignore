@@ -22,6 +22,7 @@ yarn-error.log*
 
 .env
 **/.env
+.env.production
 
 /backend/node_modules
 /backend/.env
