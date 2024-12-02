@@ -106,9 +106,8 @@ const Card: React.FC<CardProps> = ({
       <CardTop>
         <TopIconContainer>
           <Icon
-            name="cardChip"
+            name={themeVariant === "dark" ? "cardChip" : "cardChipDark"}
             size={35}
-            color={themeVariant === "dark" ? "#FFFFFF" : "blue"}
           />
         </TopIconContainer>
         <div>
@@ -134,9 +133,8 @@ const Card: React.FC<CardProps> = ({
         </CardNumber>
         <BottomIconContainer>
           <Icon
-            name="mastercard"
+            name={themeVariant === "dark" ? "mastercard" : "mastercardDark"}
             size={44}
-            color={themeVariant === "dark" ? "#FFFFFF" : "#9199AF"}
           />
         </BottomIconContainer>
       </CardBottom>

@@ -37,6 +37,10 @@ const Wrapper = styled.div`
   align-items: center;
   border-radius: 25px;
   background-color: white;
+
+  @media (max-width: 768px) {
+    width: 325px;
+  }
 `;
 
 const BalanceHistoryChart: React.FC<BalanceHistoryChartProps> = ({
