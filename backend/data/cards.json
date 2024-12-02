@@ -1,0 +1,16 @@
+[
+  {
+    "id": 1,
+    "balance": "5,756",
+    "cardholderName": "Eddy Cusuma",
+    "cardNumber": "3778123422541234",
+    "expiryDate": "12/22"
+  },
+  {
+    "id": 2,
+    "balance": "3,456",
+    "cardholderName": "John Doe",
+    "cardNumber": "1234456523425678",
+    "expiryDate": "11/24"
+  }
+]

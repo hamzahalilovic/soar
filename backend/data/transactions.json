@@ -1,0 +1,50 @@
+[
+  {
+    "id": 1,
+    "icon": "cardDeposit",
+    "type": "deposit-card",
+    "description": "Deposit from my Card",
+    "date": "28 January 2021",
+    "amount": -180
+  },
+  {
+    "id": 2,
+    "icon": "paypal",
+    "type": "deposit-paypal",
+    "description": "Deposit Paypal",
+    "date": "25 January 2021",
+    "amount": 2523
+  },
+  {
+    "id": 3,
+    "icon": "transfer",
+    "type": "transfer",
+    "description": "Jemi Wilson",
+    "date": "21 January 2021",
+    "amount": 7812
+  },
+  {
+    "id": 4,
+    "icon": "cardDeposit",
+    "type": "deposit-card",
+    "description": "Deposit from my Card",
+    "date": "20 January 2021",
+    "amount": -850
+  },
+  {
+    "id": 5,
+    "icon": "paypal",
+    "type": "deposit-paypal",
+    "description": "Deposit Paypal",
+    "date": "17 January 2021",
+    "amount": 2789
+  },
+  {
+    "id": 6,
+    "icon": "transfer",
+    "type": "transfer",
+    "description": "Jane Doe",
+    "date": "15 January 2021",
+    "amount": 5411
+  }
+]

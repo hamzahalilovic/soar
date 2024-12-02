@@ -1,0 +1,14 @@
+{
+  "id": 1,
+  "profileImage": "/uploads/1733097946035-profile-picture.png",
+  "name": "Charlene Reed",
+  "username": "CharleneReeds",
+  "email": "charlenereed@gmail.com",
+  "password": "12321421",
+  "dateOfBirth": "1990-01-25",
+  "presentAddress": "San Jose, California, USA",
+  "permanentAddress": "San Jose, California, USA",
+  "city": "San Joses",
+  "postalCode": "45962",
+  "country": "USA"
+}
