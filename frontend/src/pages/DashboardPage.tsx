@@ -64,7 +64,7 @@ const DashboardPage: React.FC = () => {
     <DashboardWrapper>
       <SectionWrapper style={{ gridColumn: "1 / 2" }}>
         <Title>My Cards</Title>
-        <div style={{ display: "flex", gap: "20px" }}>
+        <div style={{ display: "flex", gap: "30px" }}>
           {cards.map((card) => (
             <Card
               key={card.id}

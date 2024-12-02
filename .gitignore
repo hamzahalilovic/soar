@@ -31,3 +31,10 @@ yarn.lock
 
 *.log
 *.lock
+
+
+/backend/.yarn/*
+!/backend/.yarn/cache
+!/backend/.yarn/releases
+!/backend/.yarn/plugins
+.yarn
