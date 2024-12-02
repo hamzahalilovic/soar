@@ -19,7 +19,7 @@ const ContentWrapper = styled.div`
 const MainContent = styled.main`
   flex: 1;
 
-  background-color: #f9f9f9;
+  background-color: #f5f7fa;
   overflow-y: auto;
 `;
 

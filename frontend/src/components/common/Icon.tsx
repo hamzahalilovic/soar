@@ -20,6 +20,7 @@ import { ReactComponent as TransferIcon } from "../../assets/icons/transfer.svg"
 import { ReactComponent as ChevronRightIcon } from "../../assets/icons/chevron-right.svg";
 import { ReactComponent as ChevronLeftIcon } from "../../assets/icons/chevron-left.svg";
 import { ReactComponent as SendIcon } from "../../assets/icons/send.svg";
+import { ReactComponent as PencilIcon } from "../../assets/icons/pencil.svg";
 
 const iconRegistry = {
   dashboard: DashboardIcon,
@@ -43,6 +44,7 @@ const iconRegistry = {
   chevronRight: ChevronRightIcon,
   chevronLeft: ChevronLeftIcon,
   send: SendIcon,
+  pencil: PencilIcon,
 };
 
 export type IconName = keyof typeof iconRegistry;

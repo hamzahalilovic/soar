@@ -6,7 +6,7 @@ export const fetchTransactions = createAsyncThunk(
   "transactions/fetchTransactions",
   async () => {
     const response = await axios.get<Transaction[]>(
-      "http://localhost:5001/transactions"
+      "https://soar-backend.vercel.app/data/transactions"
     );
     return response.data;
   }
