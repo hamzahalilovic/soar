@@ -5,8 +5,8 @@
   "scripts": {
     "dev": "nodemon server.js",
     "start": "node server.js",
-    "start:local": "node server.js",
-    "start:production": "node server-production.js"
+    "start:local": "node -r dotenv/config server.js dotenv_config_path=.env.local",
+    "start:production": "node -r dotenv/config server-production.js dotenv_config_path=.env.production"
   },
   "keywords": [],
   "author": "",
