@@ -1,0 +1,16 @@
+{
+  "name": "soar",
+  "packageManager": "yarn@3.6.4",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev:frontend": "yarn --cwd frontend start",
+    "dev:backend": "yarn --cwd backend dev",
+    "dev": "concurrently \"yarn dev:frontend\" \"yarn dev:backend\"",
+    "build:frontend": "yarn --cwd frontend build",
+    "start:backend": "yarn --cwd backend start"
+  },
+  "devDependencies": {
+    "concurrently": "^7.0.0"
+  }
+}
