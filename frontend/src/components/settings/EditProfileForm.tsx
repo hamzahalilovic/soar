@@ -140,10 +140,13 @@ const EditProfileForm: React.FC = () => {
       const uploadFormData = new FormData();
       uploadFormData.append("profileImage", profileImage);
 
-      const uploadResponse = await fetch("http://localhost:5001/user/upload", {
-        method: "POST",
-        body: uploadFormData,
-      });
+      const uploadResponse = await fetch(
+        "https://soar-backend.vercel.app/user/upload",
+        {
+          method: "POST",
+          body: uploadFormData,
+        }
+      );
 
       const result = await uploadResponse.json();
 
@@ -161,11 +164,15 @@ const EditProfileForm: React.FC = () => {
     setProfileImage(null);
   };
 
+  console.log("form", formData);
+
   if (status === "loading") return <div>Loading...</div>;
+
+  const fullImageUrl = formData.profileImage;
 
   const displayImage =
     profileImagePreview ||
-    `http://localhost:5001${formData.profileImage}` ||
+    fullImageUrl ||
     "https://www.kindpng.com/picc/m/252-2524695_dummy-profile-image-jpg-hd-png-download.png";
 
   return (

@@ -18,7 +18,9 @@ const initialState: ContactsState = {
 export const fetchContacts = createAsyncThunk(
   "contacts/fetchContacts",
   async () => {
-    const response = await axios.get<Contact[]>("http://localhost:5001/contacts");
+    const response = await axios.get<Contact[]>(
+      "https://soar-backend.vercel.app/data/contacts"
+    );
     return response.data;
   }
 );

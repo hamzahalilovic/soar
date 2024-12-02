@@ -92,9 +92,7 @@ const Navbar: React.FC = () => {
   const defaultImage =
     "https://www.kindpng.com/picc/m/252-2524695_dummy-profile-image-jpg-hd-png-download.png";
 
-  const profileImage = user?.profileImage
-    ? `http://localhost:5001${user.profileImage}`
-    : defaultImage;
+  const profileImage = user?.profileImage || defaultImage;
 
   return (
     <NavbarWrapper>

@@ -16,17 +16,20 @@ const initialState: UserState = {
 };
 
 export const fetchUser = createAsyncThunk("user/fetchUser", async () => {
-  const response = await axios.get("http://localhost:5001/user");
+  const response = await axios.get("https://soar-backend.vercel.app/user");
   return response.data;
 });
 
 export const updateUser = createAsyncThunk(
-    "user/updateUser",
-    async (updatedData: Partial<User>) => {
-      const response = await axios.put("http://localhost:5001/user", updatedData);
-      return response.data.user;
-    }
-  );
+  "user/updateUser",
+  async (updatedData: Partial<User>) => {
+    const response = await axios.put(
+      "https://soar-backend.vercel.app/user",
+      updatedData
+    );
+    return response.data.user;
+  }
+);
 
 const userSlice = createSlice({
   name: "user",
